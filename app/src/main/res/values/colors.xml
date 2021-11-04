@@ -8,4 +8,5 @@
     <color name="secondaryDarkColor">#8D8D8D</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="color_hint">#757575</color>
 </resources>
