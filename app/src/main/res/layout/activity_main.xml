@@ -6,17 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
-    <ImageButton
-        android:id="@+id/ib_more"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:navGraph="@navigation/main_nav_graph"
+        app:defaultNavHost="true" />
+
+    <ImageView
+        android:id="@+id/iv_more"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_16sdp"
-        android:src="@drawable/ic_more"
-        android:contentDescription="@string/more"
         android:background="@android:color/transparent"
-        app:tint="@color/white"
+        android:contentDescription="@string/more"
+        android:padding="@dimen/_3sdp"
+        android:src="@drawable/ic_more"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

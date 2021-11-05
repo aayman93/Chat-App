@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.ibMore.setOnClickListener { v ->
+        binding.ivMore.setOnClickListener { v ->
             PopupMenu(this, v).apply {
                 setOnMenuItemClickListener(this@MainActivity)
                 inflate(R.menu.menu_popup)

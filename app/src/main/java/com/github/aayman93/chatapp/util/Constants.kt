@@ -8,4 +8,5 @@ object Constants {
     const val MIN_PASSWORD_LENGTH = 8
 
     const val KEY_COLLECTION_USERS = "users"
+    const val KEY_USER_PROFILE_PICTURE = "profilePictureUrl"
 }

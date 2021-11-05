@@ -17,4 +17,13 @@
     <string name="error_password_too_short">Password must not be less than %d characters</string>
     <string name="more">More</string>
     <string name="logout">Logout</string>
+    <string name="skip">Skip</string>
+    <string name="complete_your_profile">Complete your profile</string>
+    <string name="choose_image">Choose Image</string>
+    <string name="bio">Bio</string>
+    <string name="upload_profile_picture">Upload a profile picture</string>
+    <string name="save">Save</string>
+    <string name="new_chat">New chat</string>
+    <string name="back">Back</string>
+    <string name="select_user">Select User</string>
 </resources>

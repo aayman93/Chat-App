@@ -1,6 +1,7 @@
 package com.github.aayman93.chatapp.ui.auth
 
 import android.content.Context
+import android.net.Uri
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -31,6 +32,16 @@ class AuthViewModel @Inject constructor(
 
     private val _loginStatus = MutableLiveData<Event<Resource<AuthResult>>>()
     val loginStatus: LiveData<Event<Resource<AuthResult>>> = _loginStatus
+
+    private val _currentImageUri = MutableLiveData<Uri>()
+    val currentImageUri: LiveData<Uri> = _currentImageUri
+
+    private val _completeProfileStatus = MutableLiveData<Event<Resource<Any>>>()
+    val completeProfileStatus: LiveData<Event<Resource<Any>>> = _completeProfileStatus
+
+    fun setCurrentImageUri(uri: Uri) {
+        _currentImageUri.postValue(uri)
+    }
 
     fun register(username: String, email: String, password: String, confirmedPassword: String) {
 
@@ -76,6 +87,14 @@ class AuthViewModel @Inject constructor(
                 val result = repository.login(email, password)
                 _loginStatus.postValue(Event(result))
             }
+        }
+    }
+
+    fun completeProfile(imageUri: Uri) {
+        _completeProfileStatus.postValue(Event(Resource.Loading()))
+        viewModelScope.launch(Dispatchers.Main) {
+            val result = repository.completeProfile(imageUri)
+            _completeProfileStatus.postValue(Event(result))
         }
     }
 

@@ -41,7 +41,7 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_40sdp"
             app:hintEnabled="false">
 
@@ -54,7 +54,7 @@
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/black"
-                android:textColorHint="#757575"
+                android:textColorHint="@color/color_hint"
                 android:textSize="@dimen/_14ssp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -62,7 +62,7 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
             app:endIconMode="password_toggle"
             app:hintEnabled="false">
@@ -104,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:indeterminate="true"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:indicatorColor="@color/secondaryLightColor" />
         </FrameLayout>
 
@@ -112,13 +112,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:layout_marginTop="@dimen/_10sdp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:text="@string/no_account_register"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12ssp"

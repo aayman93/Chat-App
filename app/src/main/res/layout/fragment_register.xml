@@ -22,7 +22,7 @@
             android:layout_marginTop="@dimen/_40sdp"
             android:layout_gravity="center"
             android:textAlignment="center"
-            android:textSize="@dimen/_18ssp"
+            android:textSize="@dimen/_16ssp"
             android:textColor="@color/white"
             android:text="@string/register_new_account"
             android:textStyle="bold"
@@ -31,7 +31,7 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_40sdp"
             app:hintEnabled="false">
 
@@ -52,7 +52,7 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
             app:hintEnabled="false">
 
@@ -73,7 +73,7 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
             app:endIconMode="password_toggle"
             app:hintEnabled="false">
@@ -95,7 +95,7 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
             app:endIconMode="password_toggle"
             app:hintEnabled="false">
@@ -137,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:indeterminate="true"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:indicatorColor="@color/secondaryLightColor" />
         </FrameLayout>
 
