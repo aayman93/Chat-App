@@ -26,4 +26,6 @@
     <string name="new_chat">New chat</string>
     <string name="back">Back</string>
     <string name="select_user">Select User</string>
+    <string name="type_a_message">Type a message…</string>
+    <string name="send">Send</string>
 </resources>

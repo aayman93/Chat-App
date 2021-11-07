@@ -13,6 +13,13 @@ class UsersAdapter @Inject constructor(
     private val glide: RequestManager
 ) : ListAdapter<User, UsersAdapter.ViewHolder>(UsersDiffer()) {
 
+    private var onUserClickListener: ((User) -> Unit)? = null
+
+
+    fun setOnUserClickListener(listener: (User) -> Unit) {
+        onUserClickListener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemUserBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -36,6 +43,10 @@ class UsersAdapter @Inject constructor(
                 tvUsername.text = user.username
                 tvEmail.text = user.email
                 glide.load(user.profilePictureUrl).into(ivProfileImage)
+
+                root.setOnClickListener {
+                    onUserClickListener?.invoke(user)
+                }
             }
         }
     }

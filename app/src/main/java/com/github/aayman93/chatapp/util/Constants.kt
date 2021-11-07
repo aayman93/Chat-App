@@ -9,4 +9,11 @@ object Constants {
 
     const val KEY_COLLECTION_USERS = "users"
     const val KEY_USER_PROFILE_PICTURE = "profilePictureUrl"
+
+    const val KEY_COLLECTION_CHAT = "chat"
+    const val KEY_CHAT_SENDER_ID = "senderId"
+    const val KEY_CHAT_RECEIVER_ID = "receiverId"
+
+    const val VIEW_TYPE_MESSAGE_SENT = 1
+    const val VIEW_TYPE_MESSAGE_RECEIVED = 2
 }

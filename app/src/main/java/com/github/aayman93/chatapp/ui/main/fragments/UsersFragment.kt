@@ -47,6 +47,12 @@ class UsersFragment : Fragment() {
         with(binding) {
             buttonBack.setOnClickListener { findNavController().navigateUp() }
         }
+
+        usersAdapter.setOnUserClickListener { user ->
+            findNavController().navigate(
+                UsersFragmentDirections.actionUsersFragmentToChatFragment(user.uid)
+            )
+        }
     }
 
     private fun subscribeToObservers() {
