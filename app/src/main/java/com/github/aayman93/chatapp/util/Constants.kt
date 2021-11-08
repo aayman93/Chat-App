@@ -11,8 +11,12 @@ object Constants {
     const val KEY_USER_PROFILE_PICTURE = "profilePictureUrl"
 
     const val KEY_COLLECTION_CHAT = "chat"
-    const val KEY_CHAT_SENDER_ID = "senderId"
-    const val KEY_CHAT_RECEIVER_ID = "receiverId"
+    const val KEY_SENDER_ID = "senderId"
+    const val KEY_RECEIVER_ID = "receiverId"
+
+    const val KEY_COLLECTION_CONVERSATIONS = "conversations"
+    const val KEY_CONVERSATION_LAST_MESSAGE = "lastMessage"
+    const val KEY_CONVERSATION_DATE = "date"
 
     const val VIEW_TYPE_MESSAGE_SENT = 1
     const val VIEW_TYPE_MESSAGE_RECEIVED = 2

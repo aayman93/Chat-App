@@ -2,6 +2,7 @@ package com.github.aayman93.chatapp.ui.main.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
@@ -11,10 +12,9 @@ import javax.inject.Inject
 
 class UsersAdapter @Inject constructor(
     private val glide: RequestManager
-) : ListAdapter<User, UsersAdapter.ViewHolder>(UsersDiffer()) {
+) : ListAdapter<User, UsersAdapter.ViewHolder>(UsersDiffer) {
 
     private var onUserClickListener: ((User) -> Unit)? = null
-
 
     fun setOnUserClickListener(listener: (User) -> Unit) {
         onUserClickListener = listener
@@ -32,6 +32,17 @@ class UsersAdapter @Inject constructor(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentUser = getItem(position)
         holder.bind(currentUser)
+    }
+
+    companion object UsersDiffer : DiffUtil.ItemCallback<User>() {
+
+        override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+            return oldItem.uid == newItem.uid
+        }
+
+        override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+            return oldItem == newItem
+        }
     }
 
     inner class ViewHolder(

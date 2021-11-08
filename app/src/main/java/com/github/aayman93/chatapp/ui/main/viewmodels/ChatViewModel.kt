@@ -32,6 +32,13 @@ class ChatViewModel @Inject constructor(
     private val _sendMessageStatus = MutableLiveData<Event<Resource<ChatMessage>>>()
     val sendMessageStatus: LiveData<Event<Resource<ChatMessage>>> = _sendMessageStatus
 
+    private val _conversationId = MutableLiveData<String?>(null)
+    val conversationId: LiveData<String?> = _conversationId
+
+    fun setConversationId(conversationId: String) {
+        _conversationId.postValue(conversationId)
+    }
+
     fun getUserDetails(uid: String) {
         _user.postValue(Event(Resource.Loading()))
         viewModelScope.launch(Dispatchers.Main) {
@@ -45,18 +52,15 @@ class ChatViewModel @Inject constructor(
         _messages.postValue(Event(Resource.Loading()))
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                viewModelScope.launch {
-                    val sentMessagesFlow = repository.listenToSentMessages(uid)
-                    val receivedMessagesFlow = repository.listenToReceivedMessages(uid)
+                val sentMessagesFlow = repository.listenToSentMessages(uid)
+                val receivedMessagesFlow = repository.listenToReceivedMessages(uid)
 
-                    sentMessagesFlow.combine(receivedMessagesFlow) { sent, received ->
-                        sent + received
-                    }.collect { messages ->
-                        val sortedMessages = messages.sortedBy { it.date }
-                        _messages.postValue(Event(Resource.Success(sortedMessages)))
-                    }
+                sentMessagesFlow.combine(receivedMessagesFlow) { sent, received ->
+                    sent + received
+                }.collect { messages ->
+                    val sortedMessages = messages.sortedBy { it.date }
+                    _messages.postValue(Event(Resource.Success(sortedMessages)))
                 }
-
             } catch (e: Exception) {
                 _messages.postValue(
                     Event(Resource.Error(e.localizedMessage ?: "Unknown Error"))
@@ -65,10 +69,10 @@ class ChatViewModel @Inject constructor(
         }
     }
 
-    fun sendMessage(message: String, receiverUid: String) {
+    fun sendMessage(message: String, receiverUid: String, conversationId: String?) {
         _sendMessageStatus.postValue(Event(Resource.Loading()))
         viewModelScope.launch(Dispatchers.IO) {
-            val result = repository.sendMessage(message, receiverUid)
+            val result = repository.sendMessage(message, receiverUid, conversationId)
             _sendMessageStatus.postValue(Event(result))
         }
     }

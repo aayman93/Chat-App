@@ -10,5 +10,6 @@ data class ChatMessage(
     val message: String = "",
     @get:Exclude var receiverImageUrl: String? = null,
     @get:Exclude var isReceived: Boolean = false,
-    val date: Date = Date()
+    val date: Date = Date(),
+    val conversationId: String = ""
 )

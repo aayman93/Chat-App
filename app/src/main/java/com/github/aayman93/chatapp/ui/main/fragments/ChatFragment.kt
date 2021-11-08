@@ -30,6 +30,7 @@ class ChatFragment : Fragment() {
 
     private val viewModel: ChatViewModel by viewModels()
     private lateinit var receiverUid: String
+    private var conversationId: String? = null
 
     @Inject
     lateinit var chatAdapter: ChatAdapter
@@ -65,7 +66,8 @@ class ChatFragment : Fragment() {
             buttonSend.setOnClickListener { v ->
                 viewModel.sendMessage(
                     inputMessage.text.toString(),
-                    receiverUid
+                    receiverUid,
+                    conversationId
                 )
                 inputMessage.text?.clear()
                 v.hideKeyboard()
@@ -96,6 +98,7 @@ class ChatFragment : Fragment() {
         ) { messages ->
             binding.progressBar.isVisible = false
             if (messages.isNotEmpty()) {
+                viewModel.setConversationId(messages[0].conversationId)
                 binding.chatRecycler.isVisible = true
                 chatAdapter.submitList(messages)
                 binding.chatRecycler.smoothScrollToPosition(chatAdapter.currentList.size)
@@ -105,7 +108,12 @@ class ChatFragment : Fragment() {
         viewModel.sendMessageStatus.observe(viewLifecycleOwner, EventObserver(
             onError = { snackbar(it) }
         ) {
+            // Do nothing
         })
+
+        viewModel.conversationId.observe(viewLifecycleOwner) {
+            conversationId = it
+        }
     }
 
     override fun onDestroyView() {
