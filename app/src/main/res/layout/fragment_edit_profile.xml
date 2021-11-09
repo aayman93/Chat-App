@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/_16sdp"
+    tools:context=".ui.main.fragments.EditProfileFragment">
+
+    <ImageView
+        android:id="@+id/button_back"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:contentDescription="@string/back"
+        android:padding="@dimen/_3sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back"
+        app:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_profile"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/button_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/button_back" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_profile_image"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_marginTop="@dimen/_40sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_back"
+        tools:src="@drawable/default_profile_picture" />
+
+    <ImageView
+        android:id="@+id/iv_choose_image"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:src="@drawable/ic_add_image"
+        android:elevation="@dimen/_2sdp"
+        app:layout_constraintBottom_toBottomOf="@id/iv_profile_image"
+        app:layout_constraintEnd_toEndOf="@id/iv_profile_image"
+        app:tint="@color/white"
+        android:contentDescription="@string/choose_image" />
+
+    <TextView
+        android:id="@+id/label_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        android:text="@string/username"
+        android:labelFor="@id/input_username"
+        android:layout_marginTop="@dimen/_15sdp"
+        app:layout_constraintTop_toBottomOf="@id/iv_profile_image"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/input_username"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:inputType="text"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp"
+        android:background="@drawable/background_text_input"
+        app:layout_constraintTop_toBottomOf="@id/label_username"
+        android:importantForAutofill="no" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="visible"
+        app:indicatorColor="@color/secondaryLightColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:animateLayoutChanges="true"
+        app:layout_constraintTop_toBottomOf="@id/input_username"
+        tools:layout_editor_absoluteX="21dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_save"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:text="@string/save"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/color_button_state"
+            app:cornerRadius="@dimen/_8sdp"
+            tools:backgroundTint="@color/white" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/save_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:indicatorColor="@color/secondaryLightColor" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

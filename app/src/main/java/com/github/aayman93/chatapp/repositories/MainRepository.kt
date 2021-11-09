@@ -1,8 +1,10 @@
 package com.github.aayman93.chatapp.repositories
 
+import android.net.Uri
 import com.github.aayman93.chatapp.data.models.ChatMessage
 import com.github.aayman93.chatapp.data.models.Conversation
 import com.github.aayman93.chatapp.data.models.User
+import com.github.aayman93.chatapp.util.Constants.DEFAULT_PROFILE_PICTURE_URL
 import com.github.aayman93.chatapp.util.Constants.KEY_RECEIVER_ID
 import com.github.aayman93.chatapp.util.Constants.KEY_SENDER_ID
 import com.github.aayman93.chatapp.util.Constants.KEY_COLLECTION_CHAT
@@ -10,6 +12,8 @@ import com.github.aayman93.chatapp.util.Constants.KEY_COLLECTION_CONVERSATIONS
 import com.github.aayman93.chatapp.util.Constants.KEY_COLLECTION_USERS
 import com.github.aayman93.chatapp.util.Constants.KEY_CONVERSATION_DATE
 import com.github.aayman93.chatapp.util.Constants.KEY_CONVERSATION_LAST_MESSAGE
+import com.github.aayman93.chatapp.util.Constants.KEY_USER_PROFILE_PICTURE
+import com.github.aayman93.chatapp.util.Constants.KEY_USER_USERNAME
 import com.github.aayman93.chatapp.util.Resource
 import com.github.aayman93.chatapp.util.safeCall
 import com.google.firebase.auth.FirebaseAuth
@@ -248,6 +252,41 @@ class MainRepository @Inject constructor(
                     subscription.remove()
                 }
             }
+        }
+    }
+
+    suspend fun updateProfile(currentUser: User, username: String, imageUri: Uri?): Resource<Any> {
+        return withContext(Dispatchers.IO) {
+            safeCall {
+                val userUid = currentUser.uid
+                val imageUrl = imageUri?.let { uri ->
+                    updateProfilePicture(userUid, uri, currentUser.profilePictureUrl)
+                        .toString()
+                }
+                val updates = mutableMapOf(
+                    KEY_USER_USERNAME to username
+                )
+                imageUrl?.let { url ->
+                    updates[KEY_USER_PROFILE_PICTURE] = url
+                }
+
+                firestore.collection(KEY_COLLECTION_USERS).document(userUid)
+                    .update(updates.toMap()).await()
+
+                Resource.Success(Any())
+            }
+        }
+    }
+
+    private suspend fun updateProfilePicture(
+        userUid: String, newImageUri: Uri, oldImageUrl: String
+    ): Uri? {
+        return withContext(Dispatchers.IO) {
+            if (oldImageUrl != DEFAULT_PROFILE_PICTURE_URL) {
+                storage.getReferenceFromUrl(oldImageUrl).delete().await()
+            }
+            storage.getReference(userUid).putFile(newImageUri).await()
+                .metadata?.reference?.downloadUrl?.await()
         }
     }
 }

@@ -110,6 +110,12 @@ class HomeFragment : Fragment(), PopupMenu.OnMenuItemClickListener {
 
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         return when(item?.itemId) {
+            R.id.editProfileFragment -> {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToEditProfileFragment()
+                )
+                true
+            }
             R.id.action_logout -> {
                 auth.signOut()
                 Intent(requireContext(), AuthActivity::class.java).also {

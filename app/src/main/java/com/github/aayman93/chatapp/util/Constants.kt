@@ -9,6 +9,7 @@ object Constants {
 
     const val KEY_COLLECTION_USERS = "users"
     const val KEY_USER_PROFILE_PICTURE = "profilePictureUrl"
+    const val KEY_USER_USERNAME = "username"
 
     const val KEY_COLLECTION_CHAT = "chat"
     const val KEY_SENDER_ID = "senderId"

@@ -12,9 +12,11 @@
     <string name="error_empty_fields">All fields are required</string>
     <string name="error_invalid_email">Please enter a valid email</string>
     <string name="error_password_mismatch">Passwords do not match</string>
+    <string name="error_username_empty">Username can not be empty</string>
     <string name="error_username_too_short">Username must not be less than %d characters</string>
     <string name="error_username_too_long">Username must not be more than %d characters</string>
     <string name="error_password_too_short">Password must not be less than %d characters</string>
+    <string name="error_no_changes">No changes were made</string>
     <string name="more">More</string>
     <string name="logout">Logout</string>
     <string name="skip">Skip</string>
@@ -29,4 +31,6 @@
     <string name="type_a_message">Type a message…</string>
     <string name="send">Send</string>
     <string name="recent_conversations">Recent Conversations</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="successfully_updated_profile">Changes were saved successfully</string>
 </resources>
